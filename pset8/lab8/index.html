@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            // TODO: Add code to check answers to questions
+            const checkAnswer = (element, correctAnswer, feedbackElement) => {
+                let userAnswer = element.tagName === 'input' ? element.value.trim() : element.textContent.trim();
+
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    element.classList.add('correct-answer');
+
+                    feedbackElement.classList.add('feedback');
+                    feedbackElement.style.color = 'green';
+                    feedbackElement.textContent = 'Correct';
+                    setTimeout(() => {
+                        feedbackElement.textContent = '';
+                    }, 1700)
+                } else {
+                    element.classList.add('wrong-answer');
+
+                    feedbackElement.classList.add('feedback');
+                    feedbackElement.style.color = 'red';
+                    feedbackElement.textContent = 'Incorret';
+                    setTimeout(() => {
+                        feedbackElement.textContent = '';
+                    }, 1700)
+
+                    setTimeout(() => {
+                        element.classList.remove('wrong-answer')
+                    }, 1700)
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.multiple-choice button').forEach((button) => {
+                    button.addEventListener('click', () => {
+                        const feedback = document.querySelector('#feedback');
+                        checkAnswer(button, 'Albert Einstein', feedback)
+                    });
+                });
+
+                document.querySelector('#send').addEventListener('click', () => {
+                    const input = document.querySelector('#input');
+                    const feedback = document.querySelector('#feedback');
+                    checkAnswer(input, 'J.K Rowling', feedback);
+                });
+            });
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3 class="question">
+                    Hello World! I'm learning web development with CS50.Which scientist developed the theory of relativity, which revolutionized the understanding of physics in the early 20th century?
+                </h3>
+
+                <div class="multiple-choice button">
+                    <button>Isaac Newton</button>
+                    <button>Niels Bohr</button>
+                    <button>Albert Einstein</button>
+                    <button>Marie Curie</button>
+                    <button>Nikola Telsa</button>
+                    <p id="feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+                <h3 class="question">
+                    Who is the author of the book series that began with "Harry Potter and the Philosopher's Stone", a saga that became extremely popular around the world?
+                </h3>
+
+                <input id="input" type="text" name="queestion" placeholder="Your answer...">
+                <button id="send">Send</button>
+                <p id="feedback" class="feedback"></p>
+            </div>
+
+        </div>
+    </body>
+
+</html>

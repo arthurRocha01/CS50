@@ -1,0 +1,13 @@
+sort1 uses: Bubble sort
+
+How do you know?: sort1 performend better in
+classified tests
+
+sort2 uses: Merge Sort
+
+How do you know?: performed better in all
+tests except reverse
+
+sort3 uses: selection sort
+
+How do you know?: slower in all tests
